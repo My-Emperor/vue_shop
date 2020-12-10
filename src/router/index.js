@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 //es6语法导入
 const Login = () => import("@/views/login/Login");
 const Home = () => import("@/views/home/Home");
+const WelCome = () => import("@/views/home/Welcome");
+const Users = () => import("@/views/home/childComp/user/Users");
 
 Vue.use(VueRouter);
 
@@ -17,7 +19,18 @@ const routes = [
   },
   {
     path: "/home",
-    component: Home
+    component: Home,
+    redirect: "/welcome",
+    children: [
+      {
+        path: "/welcome",
+        component: WelCome
+      },
+      {
+        path: "/users",
+        component: Users
+      }
+    ]
   }
 ];
 
@@ -31,14 +44,11 @@ const router = new VueRouter({
 //  from 从哪里跳转的页面
 //  next() 放行  如果带参数 则强制跳转的参数路径
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login') return next();
+  if (to.path === "/login") return next();
   const token = window.sessionStorage.getItem("token");
-  if (!token) return next('/login');
+  if (!token) return next("/login");
   return next();
 });
-
-
-
 
 //BUG
 /* 由于next();加了分号的缘故 因此

@@ -59,3 +59,15 @@ a {
   float: right;
 }
 
+/*user组件面包屑*/
+div .el-breadcrumb {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/*让表格居中对齐*/
+.el-table td,
+.el-table th{
+  text-align: center !important;
+}
+

@@ -10,12 +10,14 @@
         :rules="loginRules"
         :model="loginUser"
         class="login_form"
-        label-width="0px">
+        label-width="0px"
+      >
         <!--用户名输入框-->
         <el-form-item prop="username">
           <el-input
             v-model="loginUser.username"
-            prefix-icon="iconfont icon-yonghu"></el-input>
+            prefix-icon="iconfont icon-yonghu"
+          ></el-input>
         </el-form-item>
         <!--密码输入框-->
         <el-form-item prop="password">
@@ -80,7 +82,7 @@ export default {
             //登录成功 获取服务器中给出的token值 存到sessionStorage中
             window.sessionStorage.setItem("token", res.data.token);
             //跳转页面
-            this.$router.push('/home');
+            this.$router.push("/home");
           })
           .catch({
             // console.log(rej)

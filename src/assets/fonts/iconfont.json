@@ -13,11 +13,25 @@
       "unicode_decimal": 58900
     },
     {
+      "icon_id": "1137786",
+      "name": "商品",
+      "font_class": "shangpin",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
       "icon_id": "1613371",
       "name": "密码",
       "font_class": "mima",
       "unicode": "e603",
       "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "5967597",
+      "name": "订单",
+      "font_class": "dingdan",
+      "unicode": "e616",
+      "unicode_decimal": 58902
     },
     {
       "icon_id": "7079483",
@@ -48,11 +62,46 @@
       "unicode_decimal": 58958
     },
     {
+      "icon_id": "11239043",
+      "name": "商品",
+      "font_class": "shangpin1",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
       "icon_id": "14294745",
       "name": "密码",
       "font_class": "mima3",
       "unicode": "e618",
       "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "16810994",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "16811020",
+      "name": "人",
+      "font_class": "ren",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "17124312",
+      "name": "数据",
+      "font_class": "shuju",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "17606404",
+      "name": "权限",
+      "font_class": "quanxian",
+      "unicode": "e6b6",
+      "unicode_decimal": 59062
     }
   ]
 }
