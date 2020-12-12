@@ -82,7 +82,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="操作">
+        <el-table-column width="300px" label="操作">
           <template slot-scope="scope">
             <el-tooltip
               :enterable="false"
@@ -118,7 +118,11 @@
               content="分配角色"
               placement="top"
             >
-              <el-button type="warning" icon="el-icon-share"></el-button>
+              <el-button
+                type="warning"
+                icon="el-icon-share"
+                @click="setRole(scope.row)"
+              ></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -168,6 +172,35 @@
       >
       </el-pagination>
     </el-card>
+
+    <!-- 分配角色的对话框 -->
+    <el-dialog
+      title="分配角色"
+      :visible.sync="setRoleDialogVisible"
+      width="50%"
+      @close="setRoleDialogClosed"
+    >
+      <div>
+        <p>当前的用户：{{ userInfo.username }}</p>
+        <p>当前的角色：{{ userInfo.role_name }}</p>
+        <p>
+          分配新角色：
+          <el-select v-model="selectedRoleId" placeholder="请选择">
+            <el-option
+              v-for="item in rolesList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id"
+            >
+            </el-option>
+          </el-select>
+        </p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -175,9 +208,11 @@
 import { getUserList } from "network/home";
 import { addUser } from "network/home";
 import { changeUserState } from "network/home";
-import { getChangeUser } from "network/home";
+import { getChangeUserById } from "network/home";
 import { changeUser } from "network/home";
 import { deleteUser } from "network/home";
+import { getRolesList } from "network/home";
+import { asRoleToUser } from "network/home";
 
 import { User } from "network/home";
 
@@ -226,6 +261,15 @@ export default {
         email: "",
         mobile: ""
       },
+      // 控制分配角色对话框的显示与隐藏
+      setRoleDialogVisible: false,
+      // 需要被分配角色的用户信息
+      userInfo: {},
+      // 所有角色的数据列表
+      rolesList: [],
+      // 已选中的角色Id值
+      selectedRoleId: "",
+
       //添加用户表单规则对象
       addFormRules: {
         username: [
@@ -358,6 +402,27 @@ export default {
         });
     },
 
+    // 展示分配角色的对话框
+    setRole(userInfo) {
+      this.userInfo = userInfo;
+
+      // 在展示对话框之前，获取所有角色的列表
+      this.getRoles();
+    },
+    // 点击按钮，分配角色
+    saveRoleInfo() {
+      if (!this.selectedRoleId) {
+        return this.$message.error("请选择要分配的角色！");
+      }
+      console.log(this.users);
+      this.asRoleToUsers(this.userInfo.id, this.selectedRoleId);
+    },
+    // 监听分配角色对话框的关闭事件
+    setRoleDialogClosed() {
+      this.selectedRoleId = "";
+      this.userInfo = {};
+    },
+
     /**
      * 网络请求相关方法
      */
@@ -419,7 +484,7 @@ export default {
 
     // //获取修改用户数据
     getChangeUsers(userId) {
-      getChangeUser(userId)
+      getChangeUserById(userId)
         .then(res => {
           if (res.meta.status !== 200)
             return this.$message.error("获取用户信息失败! ERR:" + res.meta.msg);
@@ -453,6 +518,31 @@ export default {
           this.getUser();
         })
         .catch();
+    },
+
+    //获取角色列表
+    getRoles() {
+      getRolesList().then(res => {
+        if (res.meta.status !== 200)
+          return this.$message.error("获取角色列表失败!ERR:" + res.meta.msg);
+        //将获取的权限列表数据赋值给rightsList
+        this.$message.success("获取角色列表成功！");
+        this.rolesList = res.data;
+        console.log(111);
+        this.setRoleDialogVisible = true;
+      });
+    },
+
+    //赋值角色给用户
+    asRoleToUsers(id, rid) {
+      asRoleToUser(id, rid).then(res => {
+        if (res.meta.status !== 200) {
+          return this.$message.error("更新角色失败！!ERR:" + res.meta.msg);
+        }
+        this.$message.success("更新角色成功！");
+        this.getUser();
+        this.setRoleDialogVisible = false;
+      });
     }
   },
 

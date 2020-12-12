@@ -5,6 +5,8 @@ const Login = () => import("@/views/login/Login");
 const Home = () => import("@/views/home/Home");
 const WelCome = () => import("@/views/home/Welcome");
 const Users = () => import("@/views/home/childComp/user/Users");
+const Rights = () => import("@/views/home/childComp/power/Rights");
+const Roles = () => import("@/views/home/childComp/power/Roles");
 
 Vue.use(VueRouter);
 
@@ -23,12 +25,24 @@ const routes = [
     redirect: "/welcome",
     children: [
       {
+        //欢迎首页
         path: "/welcome",
         component: WelCome
       },
       {
+        //用户列表
         path: "/users",
         component: Users
+      },
+      {
+        //权限列表
+        path: "/rights",
+        component: Rights
+      },
+      {
+        //角色列表
+        path: "/roles",
+        component: Roles
       }
     ]
   }

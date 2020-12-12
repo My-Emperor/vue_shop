@@ -1,12 +1,5 @@
 import axios from "axios";
 
-import Vue from "vue";
-Vue.prototype.$http = axios;
-axios.interceptors.request.use(config => {
-  config.headers.Authorization = window.sessionStorage.getItem("token");
-  return config;
-});
-
 //对axios进行封装 导出axios实例
 export function request(config) {
   //1.创建axios的实例

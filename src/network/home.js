@@ -52,7 +52,7 @@ export function addUser(username, password, email, mobile) {
 }
 
 //获取修改用户数据
-export function getChangeUser(userId) {
+export function getChangeUserById(userId) {
   return request({
     url: `users/${userId}`
   });
@@ -75,5 +75,93 @@ export function deleteUser(userId) {
   return request({
     url: `users/${userId}`,
     method: "delete"
+  });
+}
+
+//分配角色给用户
+export function asRoleToUser(id, rid) {
+  return request({
+    url: `users/${id}/role`,
+    method: "put",
+    data: {
+      rid
+    }
+  });
+}
+
+// -------rights-------
+//获取权限列表
+export function getRightsList(type) {
+  return request({
+    url: `rights/${type}`,
+    method: "get"
+  });
+}
+
+// -------roles-------
+//获取角色列表
+export function getRolesList() {
+  return request({
+    url: "roles",
+    method: "get"
+  });
+}
+
+//添加角色列表
+export function addRoles(roleName, roleDesc) {
+  return request({
+    url: "roles",
+    method: "post",
+    data: {
+      roleName,
+      roleDesc
+    }
+  });
+}
+
+//获取修改角色数据
+export function getChangeRolesById(id) {
+  return request({
+    url: `roles/${id}`,
+    method: "get"
+  });
+}
+
+//提交修改角色
+export function changeRoles(id, roleName, roleDesc) {
+  return request({
+    url: `roles/${id}`,
+    method: "put",
+    data: {
+      roleName,
+      roleDesc
+    }
+  });
+}
+
+//删除角色
+export function deleteRolesById(id) {
+  return request({
+    url: `roles/${id}`,
+    method: "delete"
+  });
+}
+
+//删除角色权限
+export function deleteRoleRightById(roleId, rightId) {
+  return request({
+    url: `roles/${roleId}/rights/${rightId}`,
+    method: "delete"
+  });
+}
+
+//角色授权
+export function editRoleRight(roleId, rids) {
+  return request({
+    url: `roles/${roleId}/rights`,
+    method: "post",
+    data: {
+      rids
+    }
   });
 }
