@@ -387,7 +387,7 @@ export default {
         ...this.$refs.treeRef.getHalfCheckedKeys()
       ];
       console.log(this.editRoleByIdArray);
-      this.editRoleRights(this.roleId, this.editRoleByIdArray);
+      this.editRoleRights(this.roleId, this.editRoleByIdArray.join(","));
     },
 
     /**
