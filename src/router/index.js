@@ -7,6 +7,7 @@ const WelCome = () => import("@/views/home/Welcome");
 const Users = () => import("@/views/home/childComp/user/Users");
 const Rights = () => import("@/views/home/childComp/power/Rights");
 const Roles = () => import("@/views/home/childComp/power/Roles");
+const Cate = () => import("@/views/home/childComp/goods/Cate");
 
 Vue.use(VueRouter);
 
@@ -43,6 +44,11 @@ const routes = [
         //角色列表
         path: "/roles",
         component: Roles
+      },
+      {
+        //商品分类
+        path: "/categories",
+        component: Cate
       }
     ]
   }
