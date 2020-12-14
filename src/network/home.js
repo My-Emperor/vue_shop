@@ -183,17 +183,17 @@ export function getParentCateList(type) {
   return request({
     url: `categories`,
     params: {
-      type,
+      type
     }
   });
 }
 
 //添加商品分类
-export function addCate(cat_pid,cat_name,cat_level) {
+export function addCate(cat_pid, cat_name, cat_level) {
   return request({
     url: `categories`,
-    method:"post",
-    data:{
+    method: "post",
+    data: {
       cat_pid,
       cat_name,
       cat_level
@@ -201,21 +201,20 @@ export function addCate(cat_pid,cat_name,cat_level) {
   });
 }
 
-
 //根据id查询商品分类数据
 export function getCateById(id) {
   return request({
-    url: `categories/${id}`,
+    url: `categories/${id}`
   });
 }
 
 //提交修改的商品分类
-export function changeCate(id,cat_name) {
+export function changeCate(id, cat_name) {
   return request({
     url: `categories/${id}`,
-    method:"put",
-    data:{
-      cat_name,
+    method: "put",
+    data: {
+      cat_name
     }
   });
 }
@@ -223,9 +222,6 @@ export function changeCate(id,cat_name) {
 export function deleteCate(id) {
   return request({
     url: `categories/${id}`,
-    method:"delete",
+    method: "delete"
   });
 }
-
-
-

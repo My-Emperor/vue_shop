@@ -12,7 +12,9 @@
       <!--      添加商品分类按钮-->
       <el-row>
         <el-col>
-          <el-button type="primary" class="addButton" @click="addCateValidate">添加分类 </el-button>
+          <el-button type="primary" class="addButton" @click="addCateValidate"
+            >添加分类
+          </el-button>
         </el-col>
       </el-row>
       <!--      表格区域-->
@@ -49,10 +51,18 @@
         </template>
         <!--        col:操作-->
         <template slot="option" slot-scope="scope">
-          <el-button size="mini" type="primary" icon="el-icon-edit" @click="changeCatesForm(scope.row.cat_id)"
+          <el-button
+            size="mini"
+            type="primary"
+            icon="el-icon-edit"
+            @click="changeCatesForm(scope.row.cat_id)"
             >编辑</el-button
           >
-          <el-button size="mini" type="danger" icon="el-icon-delete" @click="removeCateById(scope.row.cat_id)"
+          <el-button
+            size="mini"
+            type="danger"
+            icon="el-icon-delete"
+            @click="removeCateById(scope.row.cat_id)"
             >删除</el-button
           >
         </template>
@@ -84,7 +94,7 @@
         label-width="70px"
       >
         <el-form-item label="分类名称" label-width="15%" prop="cat_name">
-          <el-input  v-model="addCateForm.cat_name"></el-input>
+          <el-input v-model="addCateForm.cat_name"></el-input>
         </el-form-item>
         <el-form-item label="父级分类" label-width="15%" prop="password">
           <!--联级选择器-->
@@ -95,18 +105,16 @@
             :props="props"
             @change="ChangeCateKey"
             clearable
-          change-on-select></el-cascader>
+            change-on-select
+          ></el-cascader>
         </el-form-item>
-      
       </el-form>
       <span slot="footer" class="dialog-footer">
-              <el-button @click="addDialogVisible = false">取 消</el-button>
-              <el-button type="primary" @click="cateFormValidate"
-              >确 定</el-button
-              >
-            </span>
+        <el-button @click="addDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="cateFormValidate">确 定</el-button>
+      </span>
     </el-dialog>
-  
+
     <!--  修改分类对话框-->
     <el-dialog
       title="修改分类"
@@ -122,17 +130,16 @@
         label-width="70px"
       >
         <el-form-item label="分类名称" label-width="15%" prop="cat_name">
-          <el-input  v-model="changeCateForm.cat_name"></el-input>
+          <el-input v-model="changeCateForm.cat_name"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-              <el-button @click="changeDialogVisible = false">取 消</el-button>
-              <el-button type="primary" @click="changeCateFormValidate"
-              >确 定</el-button
-              >
-            </span>
+        <el-button @click="changeDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="changeCateFormValidate"
+          >确 定</el-button
+        >
+      </span>
     </el-dialog>
-    
   </div>
 </template>
 
@@ -180,49 +187,47 @@ export default {
         }
       ],
       //添加分类对象
-      addCateForm:{
-        cat_pid:'',
-        cat_name:'',
-        cat_level:'',
+      addCateForm: {
+        cat_pid: "",
+        cat_name: "",
+        cat_level: ""
       },
       //添加分类控制弹窗对象
-      addDialogVisible:false,
-      
+      addDialogVisible: false,
+
       //父级分类层级数组
-      parentCateList:[],
-      
+      parentCateList: [],
+
       //联级选择器配置对象
-      props:{
-        value:'cat_id',
-        label:'cat_name',
-        children:'children',
+      props: {
+        value: "cat_id",
+        label: "cat_name",
+        children: "children"
       },
-      
+
       //选中父级的id数组
-      selectCateKey:[],
-      
+      selectCateKey: [],
+
       //修改分类表单对象
-      changeCateForm:{},
-      
+      changeCateForm: {},
+
       //修改分类控制值弹窗对象
-      changeDialogVisible:false,
-      
+      changeDialogVisible: false,
+
       //添加分类表单规则对象
       addFormRules: {
         cat_name: [
           { required: true, message: "请输入分类名称", trigger: "blur" },
           { min: 2, max: 10, message: "长度在 2 到 10 个字符", trigger: "blur" }
-        ],
+        ]
       },
       //修改分类表单规则对象
-      changeFormRules:{
+      changeFormRules: {
         cat_name: [
           { required: true, message: "请输入分类名称", trigger: "blur" },
           { min: 2, max: 10, message: "长度在 2 到 10 个字符", trigger: "blur" }
-        ],
-      },
-      
-      
+        ]
+      }
     };
   },
   methods: {
@@ -239,65 +244,67 @@ export default {
       console.log(this.cateInfo);
       this.getCate(this.cateInfo);
     },
-    
+
     //监听分类弹窗,关闭时触发,重置表单对象
-    addDialogClosed(){
+    addDialogClosed() {
       //重置联级选择器
       this.selectCateKey = [];
       this.addCateForm.cat_pid = 0;
       this.addCateForm.cat_level = 0;
       this.$refs.addCateFormRef.resetFields();
     },
-    
+
     //监听添加分类按钮 添加时弹窗显示
-    addCateValidate(){
+    addCateValidate() {
       this.addDialogVisible = true;
       this.getParentCateLists();
-      console.log(this.parentCateList)
+      console.log(this.parentCateList);
     },
-    
+
     //监听联级选项是否发生改变
-    ChangeCateKey(){
-      if (this.selectCateKey.length > 0){
-        this.addCateForm.cat_pid = this.selectCateKey[this.selectCateKey.length-1];
+    ChangeCateKey() {
+      if (this.selectCateKey.length > 0) {
+        this.addCateForm.cat_pid = this.selectCateKey[
+          this.selectCateKey.length - 1
+        ];
         this.addCateForm.cat_level = this.selectCateKey.length;
         return;
-      }else{
+      } else {
         this.addCateForm.cat_pid = 0;
         this.addCateForm.cat_level = 0;
       }
     },
-    
+
     //添加分类
-    cateFormValidate(){
+    cateFormValidate() {
       // console.log(this.addCateForm)
-      this.addCates(this.addCateForm)
+      this.addCates(this.addCateForm);
     },
-    
+
     //监听修改分类弹窗是否关闭
-    changeDialogClosed(){
+    changeDialogClosed() {
       //重置表单
       this.$refs.changeCateFormRef.resetFields();
     },
 
     //监听修改分类按钮 并初始化表单数据
-    changeCatesForm(id){
+    changeCatesForm(id) {
       this.getCatesById(id);
       console.log(this.changeCateForm);
     },
-    
+
     //提交修改分类数据
-    changeCateFormValidate(){
+    changeCateFormValidate() {
       this.changeCates(this.changeCateForm);
     },
-    
+
     //删除分类
     removeCateById(cat_id) {
       this.$confirm("此操作将删除该分类, 是否继续?", "提示", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
-        })
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
         .then(() => {
           //用户点击了确定按钮:
           //进行删除用户操作
@@ -310,7 +317,7 @@ export default {
           });
         });
     },
-    
+
     /**
      * 网络请求相关方法
      */
@@ -328,65 +335,73 @@ export default {
         }
       );
     },
-    
+
     //获取父级商品层级
-    getParentCateLists(){
+    getParentCateLists() {
       //获取前两级的分类
       getParentCateList(2).then(res => {
-        if (res.meta.status !== 200) return this.$message.error("获取父级商品分类层级失败!ERR:"+res.meta.msg);
-        this.parentCateList = res.data
-      })
+        if (res.meta.status !== 200)
+          return this.$message.error(
+            "获取父级商品分类层级失败!ERR:" + res.meta.msg
+          );
+        this.parentCateList = res.data;
+      });
     },
-    
+
     //添加商品分类
-    addCates(addCateForms){
-      addCate(addCateForms.cat_pid,addCateForms.cat_name,addCateForms.cat_level).then(res => {
-        if (res.meta.status !== 201) return this.$message.error("添加商品分类失败!ERR:"+res.meta.msg);
+    addCates(addCateForms) {
+      addCate(
+        addCateForms.cat_pid,
+        addCateForms.cat_name,
+        addCateForms.cat_level
+      ).then(res => {
+        if (res.meta.status !== 201)
+          return this.$message.error("添加商品分类失败!ERR:" + res.meta.msg);
         this.$message.success("添加商品分类成功!");
         //关闭弹窗
         this.addDialogVisible = false;
         //刷新商品分类列表
-        this.getCate(this.cateInfo)
-      })
+        this.getCate(this.cateInfo);
+      });
     },
-    
+
     //根据Id获取商品分类数据
-    getCatesById(id){
+    getCatesById(id) {
       getCateById(id).then(res => {
-        if (res.meta.status !== 200) return this.$message.error("获取商品分类失败!ERR:"+res.meta.msg);
+        if (res.meta.status !== 200)
+          return this.$message.error("获取商品分类失败!ERR:" + res.meta.msg);
         this.$message.success("获取商品分类成功!");
         this.changeCateForm = res.data;
         //显示弹窗
         this.changeDialogVisible = true;
-      })
+      });
     },
-    
+
     //修改商品分类表单数据
-    changeCates(cateForm){
-      changeCate(cateForm.cat_id,cateForm.cat_name).then(res => {
-        if (res.meta.status !== 200) return this.$message.error("修改商品分类失败!ERR:"+res.meta.msg);
+    changeCates(cateForm) {
+      changeCate(cateForm.cat_id, cateForm.cat_name).then(res => {
+        if (res.meta.status !== 200)
+          return this.$message.error("修改商品分类失败!ERR:" + res.meta.msg);
         this.$message.success("修改商品分类成功!");
         //关闭弹窗
         this.changeDialogVisible = false;
         //刷新商品分类数据列表
-        this.getCate(this.cateInfo)
-      })
+        this.getCate(this.cateInfo);
+      });
     },
-    
+
     //删除商品分类
-    deleteCates(id){
+    deleteCates(id) {
       deleteCate(id).then(res => {
-        if (res.meta.status !== 200) return this.$message.error("删除商品分类失败!ERR:"+res.meta.msg);
+        if (res.meta.status !== 200)
+          return this.$message.error("删除商品分类失败!ERR:" + res.meta.msg);
         this.$message.success("删除商品分类成功!");
         //关闭弹窗
         this.changeDialogVisible = false;
         //刷新商品分类数据列表
-        this.getCate(this.cateInfo)
-      })
-      
-      
+        this.getCate(this.cateInfo);
+      });
     }
-    
   },
   created() {
     //在该组件创建时渲染商品分类数据列表
@@ -402,7 +417,7 @@ export default {
 .treeTable {
   margin-top: 15px;
 }
-  .el-cascader{
-    width: 100%;
-  }
+.el-cascader {
+  width: 100%;
+}
 </style>
