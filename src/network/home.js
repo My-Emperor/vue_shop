@@ -225,3 +225,81 @@ export function deleteCate(id) {
     method: "delete"
   });
 }
+
+// -------params-------
+//获取所有商品分类数据
+export function getCateListAll() {
+  return request({
+    url: `categories`
+  });
+}
+
+//获取分类参数列表
+export function getCateParams(id, sel) {
+  return request({
+    url: `categories/${id}/attributes`,
+    params: {
+      sel
+    }
+  });
+}
+
+//添加动态参数或静态属性
+export function addCateParams(id, attr_name, attr_sel) {
+  return request({
+    url: `categories/${id}/attributes`,
+    method: "post",
+    data: {
+      attr_name,
+      attr_sel
+    }
+  });
+}
+
+//删除参数
+export function deleteCateParamsById(id, attrid) {
+  return request({
+    url: `categories/${id}/attributes/${attrid}`,
+    method: "delete"
+  });
+}
+
+//根据id查询参数
+export function selectCateParamsById(id, attrid, attr_sel) {
+  return request({
+    url: `categories/${id}/attributes/${attrid}`,
+    method: "get",
+    params: {
+      attr_sel
+    }
+  });
+}
+//提交修改查询
+export function changeCateParams(id, attrid, attr_name, attr_sel) {
+  return request({
+    url: `categories/${id}/attributes/${attrid}`,
+    method: "put",
+    data: {
+      attr_name,
+      attr_sel
+    }
+  });
+}
+//提交属性Attr_Vals的修改
+export function changeCateParamsAttrVals(
+  id,
+  attrid,
+  attr_name,
+  attr_sel,
+  attr_vals
+) {
+  return request({
+    url: `categories/${id}/attributes/${attrid}`,
+    method: "put",
+    data: {
+      attr_name,
+      attr_sel,
+      attr_vals
+    }
+  });
+}

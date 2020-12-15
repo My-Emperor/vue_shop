@@ -8,6 +8,7 @@ const Users = () => import("@/views/home/childComp/user/Users");
 const Rights = () => import("@/views/home/childComp/power/Rights");
 const Roles = () => import("@/views/home/childComp/power/Roles");
 const Cate = () => import("@/views/home/childComp/goods/Cate");
+const Params = () => import("@/views/home/childComp/goods/Params");
 
 Vue.use(VueRouter);
 
@@ -49,6 +50,11 @@ const routes = [
         //商品分类
         path: "/categories",
         component: Cate
+      },
+      {
+        //分类参数
+        path: "/params",
+        component: Params
       }
     ]
   }

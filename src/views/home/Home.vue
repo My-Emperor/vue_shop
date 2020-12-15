@@ -4,7 +4,7 @@
       <div>
         <img src="~assets/img/heima.png" alt="" /><span>电商后台管理系统</span>
       </div>
-      <el-button type="info" @click="reback">重置</el-button>
+      <el-button type="info" @click="reback">注销</el-button>
     </el-header>
     <el-container>
       <el-aside :width="isCollapse ? '64px' : '200px'">

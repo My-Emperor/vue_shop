@@ -29,7 +29,10 @@ import {
   Tree,
   Select,
   Option,
-  Cascader
+  Cascader,
+  Alert,
+  Tabs,
+  TabPane
 } from "element-ui";
 
 Vue.use(Button);
@@ -60,6 +63,9 @@ Vue.use(Tree);
 Vue.use(Select);
 Vue.use(Option);
 Vue.use(Cascader);
+Vue.use(Alert);
+Vue.use(Tabs);
+Vue.use(TabPane);
 
 //消息组件需要进行全局挂载
 Vue.prototype.$message = Message;
