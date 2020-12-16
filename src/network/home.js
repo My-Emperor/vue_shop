@@ -303,3 +303,55 @@ export function changeCateParamsAttrVals(
     }
   });
 }
+// -------goodsList-------
+/**
+ * 获取商品列表数据
+ * @param query 查询参数
+ * @param pagenum 当前页码
+ * @param pagesize 每页显示条数
+ * @returns {*}
+ */
+export function getGoods(query,pagenum,pagesize) {
+  return request({
+    url: `goods`,
+    method: "get",
+    params: {
+      query,
+      pagenum,
+      pagesize
+    }
+  });
+}
+export function deleteGoodsById(id) {
+  return request({
+    url: `goods/${id}`,
+    method: "delete",
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

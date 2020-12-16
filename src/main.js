@@ -16,6 +16,26 @@ Vue.config.productionTip = false;
 
 Vue.component("tree-table", TreeTable);
 
+//全局定义一个时间格式化过滤器
+Vue.filter('dateFormate', function (originVal) {
+  //获取该时间对应的date对象
+  const date = new Date(originVal);
+  
+  const year = date.getFullYear();
+  //month 从0月份开始计算
+  //padStart 判断是否为2位数,不满足则在前边添加字符串 '0';
+  const month = (date.getMonth() + 1 + '').padStart(2, '0');
+  const day = (date.getMonth() + '').padStart(2, '0');
+  
+  const hour = (date.getHours() + '').padStart(2, '0');
+  const minute = (date.getMinutes() + '').padStart(2, '0');
+  const second = (date.getSeconds() + '').padStart(2, '0');
+  
+  //返回自定义格式的模板字符串
+  return `${year}-${month}-${day} ${hour}:${minute}:${second}`
+  
+})
+
 new Vue({
   router,
   store,
