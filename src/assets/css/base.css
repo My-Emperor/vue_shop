@@ -73,3 +73,7 @@ div .el-breadcrumb {
 /*  text-align: center ;*/
 /*}*/
 
+/*富文本编辑器高度*/
+.ql-editor {
+  min-height: 300px;
+}

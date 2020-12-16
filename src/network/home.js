@@ -311,7 +311,7 @@ export function changeCateParamsAttrVals(
  * @param pagesize 每页显示条数
  * @returns {*}
  */
-export function getGoods(query,pagenum,pagesize) {
+export function getGoods(query, pagenum, pagesize) {
   return request({
     url: `goods`,
     method: "get",
@@ -325,33 +325,33 @@ export function getGoods(query,pagenum,pagesize) {
 export function deleteGoodsById(id) {
   return request({
     url: `goods/${id}`,
-    method: "delete",
+    method: "delete"
   });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//添加商品
+export function addGood(
+  goods_name,
+  goods_cat,
+  goods_price,
+  goods_number,
+  goods_weight,
+  goods_introduce,
+  pics,
+  attrs
+) {
+  return request({
+    url: `goods`,
+    method: "post",
+    data: {
+      goods_name,
+      goods_cat,
+      goods_price,
+      goods_number,
+      goods_weight,
+      goods_introduce,
+      pics,
+      attrs
+    }
+  });
+}

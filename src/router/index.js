@@ -10,7 +10,7 @@ const Roles = () => import("@/views/home/childComp/power/Roles");
 const Cate = () => import("@/views/home/childComp/goods/Cate");
 const Params = () => import("@/views/home/childComp/goods/Params");
 const List = () => import("@/views/home/childComp/goods/List");
-const AddGoods = () => import("@/views/home/childComp/goods/addGoods");
+const AddGoods = () => import("@/views/home/childComp/goods/AddGoods");
 
 Vue.use(VueRouter);
 
@@ -61,14 +61,12 @@ const routes = [
       {
         //商品列表
         path: "/goods",
-        component: List,
-        children: [
-          //添加商品
-          {
-            path:"/addGoods",
-            component:AddGoods,
-          }
-        ]
+        component: List
+      },
+      {
+        //添加商品
+        path: "/goods/addGoods",
+        component: AddGoods
       }
     ]
   }
