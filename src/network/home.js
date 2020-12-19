@@ -304,6 +304,7 @@ export function changeCateParamsAttrVals(
   });
 }
 // -------goodsList-------
+
 /**
  * 获取商品列表数据
  * @param query 查询参数
@@ -353,5 +354,27 @@ export function addGood(
       pics,
       attrs
     }
+  });
+}
+
+// -------order-------
+//获取订单数据列表
+export function getOrder(query, pagenum, pagesize) {
+  return request({
+    url: `orders`,
+    method: "get",
+    params: {
+      query,
+      pagenum,
+      pagesize
+    }
+  });
+}
+
+//查看物流信息
+export function getExpressById(id) {
+  return request({
+    url: `/kuaidi/${id}`,
+    method: "get"
   });
 }

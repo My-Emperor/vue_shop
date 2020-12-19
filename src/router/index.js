@@ -11,6 +11,7 @@ const Cate = () => import("@/views/home/childComp/goods/Cate");
 const Params = () => import("@/views/home/childComp/goods/Params");
 const List = () => import("@/views/home/childComp/goods/List");
 const AddGoods = () => import("@/views/home/childComp/goods/AddGoods");
+const Order = () => import("@/views/home/childComp/order/Order");
 
 Vue.use(VueRouter);
 
@@ -67,6 +68,11 @@ const routes = [
         //添加商品
         path: "/goods/addGoods",
         component: AddGoods
+      },
+      {
+        //订单管理
+        path: "/orders",
+        component: Order
       }
     ]
   }
