@@ -12,6 +12,7 @@ const Params = () => import("@/views/home/childComp/goods/Params");
 const List = () => import("@/views/home/childComp/goods/List");
 const AddGoods = () => import("@/views/home/childComp/goods/AddGoods");
 const Order = () => import("@/views/home/childComp/order/Order");
+const Report = () => import("@/views/home/childComp/report/Report");
 
 Vue.use(VueRouter);
 
@@ -73,6 +74,11 @@ const routes = [
         //订单管理
         path: "/orders",
         component: Order
+      },
+      {
+        //数据统计
+        path: "/reports",
+        component: Report
       }
     ]
   }

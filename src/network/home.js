@@ -378,3 +378,12 @@ export function getExpressById(id) {
     method: "get"
   });
 }
+
+// -------report-------
+//获取时间统计折线图数据
+export function getChart() {
+  return request({
+    url: `reports/type/1`,
+    method: "get"
+  });
+}
