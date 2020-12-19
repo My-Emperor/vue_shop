@@ -5,7 +5,6 @@ import store from "./store";
 import "./plugins/element.js";
 import TreeTable from "vue-table-with-tree-grid";
 import VueQuillEditor from "vue-quill-editor";
-
 //导入全局样式表
 import "./assets/css/base.css";
 //导入element-ui样式表
